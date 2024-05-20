@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>AJAX PRG</title>
+<script>
+function fetchData() {
+var xhr = new XMLHttpRequest();
+xhr.open("GET","https://jsonplaceholder.typicode.com/posts/1", true);
+xhr.onreadystatechange = function() {
+if (xhr.readyState === 4) {
+if (xhr.status === 200) {
+var response = JSON.parse(xhr.responseText);
+document.getElementById("title").textContent = response.title;
+document.getElementById("body").textContent = response.body;
+} else {
+document.getElementById("output").textContent = "Error: " +xhr.status;
+}
+}
+};
+xhr.send();
+}
+</script>
+
+</head>
+<body>
+<button onclick="fetchData()">Fetch Data</button>
+<div>
+<h2>Title :</h2>
+<p id="title"></p>
+<h2>Body :</h2>
+<p id="body"></p>
+</div>
+</body>
+</html>
